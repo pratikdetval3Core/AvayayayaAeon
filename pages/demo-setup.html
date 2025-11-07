@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Demo Setup - Employee Payroll & Attendance System">
+  <title>Demo Setup - Payroll App</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/modern-mobile.css">
+  <link rel="stylesheet" href="../css/utilities.css">
+  
+  <style>
+    body {
+      background: var(--background);
+    }
+    
+    .setup-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: var(--spacing-lg);
+    }
+    
+    .setup-header {
+      background: linear-gradient(135deg, #5B7FFF 0%, #4A6FEE 100%);
+      padding: var(--spacing-2xl) var(--spacing-lg);
+      border-radius: var(--radius-2xl);
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+      box-shadow: var(--shadow-lg);
+      color: white;
+    }
+    
+    .setup-icon {
+      font-size: 4rem;
+      margin-bottom: var(--spacing-md);
+      animation: bounce 2s ease infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .setup-title {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: white;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .setup-subtitle {
+      font-size: var(--font-size-base);
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .credentials-card {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+      box-shadow: var(--shadow-card);
+      transition: all var(--transition-base);
+    }
+    
+    .credentials-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    
+    .credentials-title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-md);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .credential-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md) 0;
+      border-bottom: 2px solid var(--background);
+    }
+    
+    .credential-item:last-child {
+      border-bottom: none;
+    }
+    
+    .credential-label {
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-secondary);
+      font-size: var(--font-size-sm);
+    }
+    
+    .credential-value {
+      font-family: 'Courier New', monospace;
+      color: var(--primary-color);
+      background: var(--background);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--radius-lg);
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-sm);
+    }
+    
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+    
+    .action-buttons .btn {
+      min-height: 52px;
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      transition: all var(--transition-base);
+    }
+    
+    .action-buttons .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #5B7FFF 0%, #4A6FEE 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(91, 127, 255, 0.3);
+    }
+    
+    .btn-danger {
+      background: linear-gradient(135deg, #FF6B6B 0%, #EE5A52 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    }
+    
+    .btn-secondary {
+      background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
+    }
+    
+    .btn-outline {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      text-decoration: none;
+    }
+    
+    .status-message {
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-xl);
+      margin-bottom: var(--spacing-lg);
+      display: none;
+      font-weight: var(--font-weight-medium);
+      animation: slideInDown 0.3s ease;
+    }
+    
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .status-message.success {
+      background: rgba(78, 203, 113, 0.15);
+      color: var(--success-color);
+      border: 2px solid var(--success-color);
+    }
+    
+    .status-message.error {
+      background: rgba(255, 107, 107, 0.15);
+      color: var(--danger-color);
+      border: 2px solid var(--danger-color);
+    }
+    
+    .status-message.info {
+      background: rgba(91, 127, 255, 0.15);
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-lg);
+    }
+    
+    .stat-card {
+      background: white;
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      box-shadow: var(--shadow-card);
+    }
+    
+    .stat-value {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--primary-color);
+    }
+    
+    .stat-label {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      margin-top: var(--spacing-xs);
+      font-weight: var(--font-weight-medium);
+    }
+    
+    .warning-box {
+      background: rgba(255, 184, 77, 0.15);
+      border: 2px solid var(--warning-color);
+      color: var(--text-primary);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-xl);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .warning-box strong {
+      color: var(--warning-color);
+    }
+    
+    @media (max-width: 767px) {
+      .setup-container {
+        padding: var(--spacing-md);
+      }
+      
+      .setup-header {
+        padding: var(--spacing-xl) var(--spacing-md);
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="setup-container">
+    <div class="setup-header">
+      <div class="setup-icon">🚀</div>
+      <h1 class="setup-title">Demo Setup</h1>
+      <p class="setup-subtitle">Initialize the application with sample data for testing</p>
+    </div>
+    
+    <div id="statusMessage" class="status-message"></div>
+    
+    <div class="warning-box">
+      <strong>⚠️ Warning:</strong> This will populate the database with sample data. 
+      If data already exists, you'll need to clear it first.
+    </div>
+    
+    <div class="credentials-card">
+      <div class="credentials-title">
+        <span>👤</span>
+        <span>Admin Credentials</span>
+      </div>
+      <div class="credential-item">
+        <span class="credential-label">Email:</span>
+        <span class="credential-value">admin@company.com</span>
+      </div>
+      <div class="credential-item">
+        <span class="credential-label">Password:</span>
+        <span class="credential-value">Admin@123</span>
+      </div>
+    </div>
+    
+    <div class="credentials-card">
+      <div class="credentials-title">
+        <span>👥</span>
+        <span>Employee Credentials</span>
+      </div>
+      <div class="credential-item">
+        <span class="credential-label">Email:</span>
+        <span class="credential-value">john.doe@company.com</span>
+      </div>
+      <div class="credential-item">
+        <span class="credential-label">Password:</span>
+        <span class="credential-value">Employee@123</span>
+      </div>
+      <div style="margin-top: var(--spacing-sm); padding-top: var(--spacing-sm); border-top: 1px solid var(--border);">
+        <small style="color: var(--text-tertiary);">
+          Other employees: jane.smith@company.com, mike.johnson@company.com, sarah.williams@company.com
+          <br>All use password: Employee@123
+        </small>
+      </div>
+    </div>
+    
+    <div class="action-buttons">
+      <button id="seedBtn" class="btn btn-primary">
+        <span>🌱</span>
+        <span>Seed Sample Data</span>
+      </button>
+      
+      <button id="clearBtn" class="btn btn-danger">
+        <span>🗑️</span>
+        <span>Clear All Data</span>
+      </button>
+      
+      <button id="resetBtn" class="btn btn-secondary">
+        <span>🔄</span>
+        <span>Reset (Clear & Reseed)</span>
+      </button>
+      
+      <a href="../pages/login.html" class="btn btn-outline">
+        <span>🔐</span>
+        <span>Go to Login</span>
+      </a>
+    </div>
+    
+    <div id="statsContainer" style="display: none;">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="statUsers">0</div>
+          <div class="stat-label">Users</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statAttendance">0</div>
+          <div class="stat-label">Attendance</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statInvoices">0</div>
+          <div class="stat-label">Invoices</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statLeave">0</div>
+          <div class="stat-label">Leave</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statKPIs">0</div>
+          <div class="stat-label">KPIs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module">
+    import sampleDataSeeder from '../js/utils/sample-data.js';
+    
+    const statusMessage = document.getElementById('statusMessage');
+    const statsContainer = document.getElementById('statsContainer');
+    const seedBtn = document.getElementById('seedBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    
+    function showMessage(message, type = 'info') {
+      statusMessage.textContent = message;
+      statusMessage.className = `status-message ${type}`;
+      statusMessage.style.display = 'block';
+      
+      setTimeout(() => {
+        statusMessage.style.display = 'none';
+      }, 5000);
+    }
+    
+    function updateStats(stats) {
+      if (stats) {
+        document.getElementById('statUsers').textContent = stats.users || 0;
+        document.getElementById('statAttendance').textContent = stats.attendance || 0;
+        document.getElementById('statInvoices').textContent = stats.invoices || 0;
+        document.getElementById('statLeave').textContent = stats.leave || 0;
+        document.getElementById('statKPIs').textContent = stats.kpis || 0;
+        statsContainer.style.display = 'block';
+      }
+    }
+    
+    function setLoading(button, loading) {
+      if (loading) {
+        button.disabled = true;
+        button.classList.add('loading');
+      } else {
+        button.disabled = false;
+        button.classList.remove('loading');
+      }
+    }
+    
+    seedBtn.addEventListener('click', async () => {
+      try {
+        setLoading(seedBtn, true);
+        showMessage('Seeding sample data...', 'info');
+        
+        const result = await sampleDataSeeder.seedAll();
+        
+        if (result.success) {
+          showMessage('✓ Sample data seeded successfully!', 'success');
+          updateStats(result.stats);
+        } else {
+          showMessage(result.message, 'error');
+        }
+      } catch (error) {
+        showMessage(`Error: ${error.message}`, 'error');
+      } finally {
+        setLoading(seedBtn, false);
+      }
+    });
+    
+    clearBtn.addEventListener('click', async () => {
+      if (!confirm('Are you sure you want to clear all data? This cannot be undone.')) {
+        return;
+      }
+      
+      try {
+        setLoading(clearBtn, true);
+        showMessage('Clearing all data...', 'info');
+        
+        const result = await sampleDataSeeder.clearAll();
+        
+        if (result.success) {
+          showMessage('✓ All data cleared successfully!', 'success');
+          statsContainer.style.display = 'none';
+        }
+      } catch (error) {
+        showMessage(`Error: ${error.message}`, 'error');
+      } finally {
+        setLoading(clearBtn, false);
+      }
+    });
+    
+    resetBtn.addEventListener('click', async () => {
+      if (!confirm('Are you sure you want to reset all data? This will clear existing data and reseed.')) {
+        return;
+      }
+      
+      try {
+        setLoading(resetBtn, true);
+        showMessage('Resetting data...', 'info');
+        
+        const result = await sampleDataSeeder.reset();
+        
+        if (result.success) {
+          showMessage('✓ Data reset successfully!', 'success');
+          updateStats(result.stats);
+        }
+      } catch (error) {
+        showMessage(`Error: ${error.message}`, 'error');
+      } finally {
+        setLoading(resetBtn, false);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports - Employee Payroll & Attendance</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/reports.css">
+  <link rel="stylesheet" href="../css/modern-mobile.css">
+</head>
+<body>
+  <div class="page-container">
+    <!-- Header -->
+    <header class="page-header">
+      <h1>Reports</h1>
+      <p class="subtitle">Generate and view reports</p>
+    </header>
+
+    <!-- Report Configuration -->
+    <section class="report-config">
+      <div class="card">
+        <h2>Generate Report</h2>
+        
+        <form id="reportForm" class="report-form">
+          <!-- Report Type Selector -->
+          <div class="form-group">
+            <label for="reportType">Report Type</label>
+            <select id="reportType" name="reportType" required>
+              <option value="">Select report type</option>
+              <option value="attendance">Attendance Report</option>
+              <option value="leave">Leave Report</option>
+              <option value="kpi">KPI Report</option>
+            </select>
+          </div>
+
+          <!-- Date Range Picker -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="startDate">Start Date</label>
+              <input type="date" id="startDate" name="startDate" required>
+            </div>
+            <div class="form-group">
+              <label for="endDate">End Date</label>
+              <input type="date" id="endDate" name="endDate" required>
+            </div>
+          </div>
+
+          <!-- User Filter (Admin Only) -->
+          <div class="form-group" id="userFilterGroup" style="display: none;">
+            <label for="userFilter">Filter by User</label>
+            <select id="userFilter" name="userFilter">
+              <option value="">All Users</option>
+            </select>
+          </div>
+
+          <!-- Generate Button -->
+          <button type="submit" class="btn btn-primary" id="generateBtn">
+            <span class="btn-text">Generate Report</span>
+            <span class="btn-loader" style="display: none;">Generating...</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Report Display Area -->
+    <section class="report-display" id="reportDisplay" style="display: none;">
+      <div class="card">
+        <div class="report-header">
+          <div>
+            <h2 id="reportTitle">Report</h2>
+            <p class="report-meta" id="reportMeta"></p>
+          </div>
+          <button class="btn btn-secondary" id="exportBtn">
+            Export CSV
+          </button>
+        </div>
+
+        <!-- Summary Statistics -->
+        <div class="report-stats" id="reportStats"></div>
+
+        <!-- Chart Area -->
+        <div class="report-chart" id="reportChart" style="display: none;">
+          <canvas id="chartCanvas"></canvas>
+        </div>
+
+        <!-- Data Table -->
+        <div class="report-table-container">
+          <table class="report-table" id="reportTable">
+            <thead id="reportTableHead"></thead>
+            <tbody id="reportTableBody"></tbody>
+          </table>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+          <p>No data found for the selected period.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loading State -->
+    <div class="loading-state" id="loadingState" style="display: none;">
+      <div class="spinner"></div>
+      <p>Generating report...</p>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav id="bottomNav"></nav>
+
+  <script type="module" src="../js/pages/reports.js"></script>
+</body>
+</html>

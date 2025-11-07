@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="User Profile">
+    <meta name="theme-color" content="#2563eb">
+    <title>Profile - Employee Management</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/modern-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Profile Header -->
+        <header class="profile-header">
+            <div class="header-content">
+                <button class="back-btn" id="backBtn">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1 class="header-title">Profile</h1>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="profile-main">
+            <!-- User Info Card -->
+            <section class="profile-card">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="profile-info">
+                    <h2 class="profile-name" id="profileName">Loading...</h2>
+                    <p class="profile-email" id="profileEmail"></p>
+                    <div class="profile-badges">
+                        <span class="badge badge-info" id="profileRole">Employee</span>
+                        <span class="badge badge-success" id="profileStatus">Active</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Location Section -->
+            <section class="section-card">
+                <h3 class="section-title">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Current Location
+                </h3>
+                <div class="location-display-wrapper" id="locationDisplay">
+                    <!-- Location component will be injected here -->
+                </div>
+            </section>
+
+            <!-- Profile Details Section -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-info-circle"></i>
+                        Profile Details
+                    </h3>
+                    <button class="btn-icon" id="editProfileBtn">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </div>
+                <div class="details-list">
+                    <div class="detail-item">
+                        <span class="detail-label">Username</span>
+                        <span class="detail-value" id="detailUsername">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Email</span>
+                        <span class="detail-value" id="detailEmail">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">User Type</span>
+                        <span class="detail-value" id="detailUserType">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Role</span>
+                        <span class="detail-value" id="detailRole">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Last Login</span>
+                        <span class="detail-value" id="detailLastLogin">-</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Change Password Section -->
+            <section class="section-card">
+                <h3 class="section-title">
+                    <i class="fas fa-lock"></i>
+                    Change Password
+                </h3>
+                <form id="changePasswordForm" class="password-form">
+                    <div class="form-group">
+                        <label class="form-label" for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="confirmPassword">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" class="form-input" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-key"></i>
+                        Change Password
+                    </button>
+                </form>
+            </section>
+
+            <!-- Actions Section -->
+            <section class="section-card actions-section">
+                <button class="btn btn-danger btn-full" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </section>
+        </main>
+
+        <!-- Edit Profile Modal -->
+        <div class="modal" id="editProfileModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Profile</h3>
+                    <button class="modal-close" id="closeModalBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="editProfileForm" class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label" for="editUsername">Username</label>
+                        <input type="text" id="editUsername" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="editEmail">Email</label>
+                        <input type="email" id="editEmail" class="form-input" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline" id="cancelEditBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav" id="bottomNav">
+            <!-- Navigation will be injected by JavaScript -->
+        </nav>
+    </div>
+
+    <script type="module" src="../js/pages/profile.js"></script>
+</body>
+</html>

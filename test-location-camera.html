@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Location & Camera Test</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    .test-container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    .test-section {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: var(--surface);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .test-section h2 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .camera-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .camera-preview {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .camera-preview img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: var(--font-size-base);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    .btn-secondary {
+      background: var(--secondary-color);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      opacity: 0.9;
+    }
+
+    .status-message {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: var(--font-size-sm);
+    }
+
+    .status-message.success {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--secondary-color);
+    }
+
+    .status-message.error {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--danger-color);
+    }
+  </style>
+</head>
+<body>
+  <div class="test-container">
+    <h1>Location & Camera Services Test</h1>
+
+    <!-- Location Display Test -->
+    <div class="test-section">
+      <h2>Location Display Component</h2>
+      <div id="location-display-container"></div>
+    </div>
+
+    <!-- Camera Test -->
+    <div class="test-section">
+      <h2>Camera Service Test</h2>
+      <div class="camera-controls">
+        <button class="btn btn-primary" id="capture-btn">Capture Image</button>
+        <button class="btn btn-secondary" id="file-upload-btn">Upload Image</button>
+        <input type="file" id="file-input" accept="image/*" style="display: none;">
+      </div>
+      <div id="camera-status"></div>
+      <div class="camera-preview" id="camera-preview" style="display: none;">
+        <img id="preview-image" alt="Captured image">
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import LocationDisplay from './js/components/LocationDisplay.js';
+    import cameraService from './js/services/camera.js';
+
+    // Initialize Location Display
+    const locationDisplay = new LocationDisplay('location-display-container', {
+      showToggle: true,
+      autoStart: false,
+      showAccuracy: true,
+      onLocationChange: (location) => {
+        console.log('Location updated:', location);
+      },
+      onError: (error) => {
+        console.error('Location error:', error);
+      }
+    });
+
+    // Camera controls
+    const captureBtn = document.getElementById('capture-btn');
+    const fileUploadBtn = document.getElementById('file-upload-btn');
+    const fileInput = document.getElementById('file-input');
+    const cameraStatus = document.getElementById('camera-status');
+    const cameraPreview = document.getElementById('camera-preview');
+    const previewImage = document.getElementById('preview-image');
+
+    function showStatus(message, type = 'success') {
+      cameraStatus.innerHTML = `<div class="status-message ${type}">${message}</div>`;
+    }
+
+    function showPreview(base64Image) {
+      previewImage.src = base64Image;
+      cameraPreview.style.display = 'block';
+    }
+
+    // Capture image from camera
+    captureBtn.addEventListener('click', async () => {
+      try {
+        showStatus('Opening camera...', 'success');
+        const base64Image = await cameraService.captureImage({
+          quality: 0.8,
+          maxWidth: 1920,
+          maxHeight: 1080
+        });
+        showStatus('Image captured successfully!', 'success');
+        showPreview(base64Image);
+        console.log('Captured image size:', base64Image.length, 'characters');
+      } catch (error) {
+        showStatus(error.message, 'error');
+        console.error('Camera error:', error);
+      }
+    });
+
+    // Upload image from file
+    fileUploadBtn.addEventListener('click', () => {
+      fileInput.click();
+    });
+
+    fileInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      try {
+        showStatus('Processing image...', 'success');
+        const base64Image = await cameraService.captureFromFile(file, {
+          quality: 0.8,
+          maxWidth: 1920,
+          maxHeight: 1080
+        });
+        showStatus('Image uploaded and processed successfully!', 'success');
+        showPreview(base64Image);
+        console.log('Processed image size:', base64Image.length, 'characters');
+      } catch (error) {
+        showStatus(error.message, 'error');
+        console.error('File processing error:', error);
+      }
+    });
+  </script>
+</body>
+</html>

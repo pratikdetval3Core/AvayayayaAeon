@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utility Functions Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #2563eb;
+        }
+        .result {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .success {
+            color: #10b981;
+        }
+        .error {
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Management System - Utility Functions Test</h1>
+    
+    <div id="test-results"></div>
+    
+    <script type="module">
+        import { formatDate, formatDateTime, formatTime, getCurrentDate, calculateHours, isToday } from './js/utils/date-utils.js';
+        import { generateUUID, isValidUUID } from './js/utils/uuid.js';
+        import { isValidEmail, validatePassword, isValidDateRange, validateUsername, isValidCoordinates } from './js/utils/validation.js';
+        
+        const resultsDiv = document.getElementById('test-results');
+        
+        function addTestSection(title, tests) {
+            const section = document.createElement('div');
+            section.className = 'test-section';
+            section.innerHTML = `<h3>${title}</h3>`;
+            
+            tests.forEach(test => {
+                const result = document.createElement('div');
+                result.className = 'result';
+                result.innerHTML = `<strong>${test.name}:</strong> ${test.result}`;
+                section.appendChild(result);
+            });
+            
+            resultsDiv.appendChild(section);
+        }
+        
+        // Test Date Utils
+        const now = new Date();
+        addTestSection('Date Utilities', [
+            { name: 'formatDate', result: formatDate(now) },
+            { name: 'formatDateTime', result: formatDateTime(now) },
+            { name: 'formatTime', result: formatTime(now) },
+            { name: 'getCurrentDate', result: getCurrentDate() },
+            { name: 'calculateHours (2 hours)', result: calculateHours(now, new Date(now.getTime() + 2 * 60 * 60 * 1000)) + ' hours' },
+            { name: 'isToday', result: isToday(now) ? '✓ Pass' : '✗ Fail' }
+        ]);
+        
+        // Test UUID
+        const uuid = generateUUID();
+        addTestSection('UUID Generation', [
+            { name: 'generateUUID', result: uuid },
+            { name: 'isValidUUID', result: isValidUUID(uuid) ? '✓ Pass' : '✗ Fail' },
+            { name: 'isValidUUID (invalid)', result: !isValidUUID('invalid-uuid') ? '✓ Pass' : '✗ Fail' }
+        ]);
+        
+        // Test Validation
+        addTestSection('Email Validation', [
+            { name: 'Valid email', result: isValidEmail('user@example.com') ? '✓ Pass' : '✗ Fail' },
+            { name: 'Invalid email', result: !isValidEmail('invalid-email') ? '✓ Pass' : '✗ Fail' }
+        ]);
+        
+        const passwordTest = validatePassword('Test123');
+        addTestSection('Password Validation', [
+            { name: 'Valid password', result: passwordTest.isValid ? '✓ Pass' : '✗ Fail' },
+            { name: 'Password errors', result: passwordTest.errors.length === 0 ? '✓ No errors' : passwordTest.errors.join(', ') }
+        ]);
+        
+        const usernameTest = validateUsername('john_doe');
+        addTestSection('Username Validation', [
+            { name: 'Valid username', result: usernameTest.isValid ? '✓ Pass' : '✗ Fail' },
+            { name: 'Username error', result: usernameTest.error || 'None' }
+        ]);
+        
+        addTestSection('Date Range Validation', [
+            { name: 'Valid range', result: isValidDateRange('2024-01-01', '2024-12-31') ? '✓ Pass' : '✗ Fail' },
+            { name: 'Invalid range', result: !isValidDateRange('2024-12-31', '2024-01-01') ? '✓ Pass' : '✗ Fail' }
+        ]);
+        
+        addTestSection('Coordinates Validation', [
+            { name: 'Valid coordinates', result: isValidCoordinates(40.7128, -74.0060) ? '✓ Pass' : '✗ Fail' },
+            { name: 'Invalid coordinates', result: !isValidCoordinates(100, 200) ? '✓ Pass' : '✗ Fail' }
+        ]);
+        
+        console.log('All utility tests completed!');
+    </script>
+</body>
+</html>

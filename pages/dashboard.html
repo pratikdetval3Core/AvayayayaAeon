@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Employee Management Dashboard">
+    <meta name="theme-color" content="#2563eb">
+    <title>Dashboard - Employee Management</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/modern-mobile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Dashboard Header -->
+        <header class="dashboard-header">
+            <div class="welcome-section">
+                <h1 class="welcome-title">Welcome, <span id="userName">User</span>!</h1>
+                <p class="welcome-subtitle" id="currentDate"></p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Today's Summary Section -->
+            <section class="summary-section">
+                <h2 class="section-title">Today's Summary</h2>
+                <div class="summary-card">
+                    <div class="summary-item">
+                        <i class="fas fa-clock summary-icon"></i>
+                        <div class="summary-content">
+                            <span class="summary-label">Attendance Status</span>
+                            <span class="summary-value" id="attendanceStatus">Not Marked</span>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <i class="fas fa-hourglass-half summary-icon"></i>
+                        <div class="summary-content">
+                            <span class="summary-label">Hours Worked</span>
+                            <span class="summary-value" id="hoursWorked">0h 0m</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions Section -->
+            <section class="quick-actions-section">
+                <h2 class="section-title">Quick Actions</h2>
+                <div class="action-cards">
+                    <div class="action-card" data-action="attendance">
+                        <div class="action-icon-wrapper">
+                            <i class="fas fa-user-check action-icon"></i>
+                        </div>
+                        <h3 class="action-title">Mark Attendance</h3>
+                        <p class="action-description">Clock in/out for today</p>
+                    </div>
+
+                    <div class="action-card" data-action="invoice">
+                        <div class="action-icon-wrapper">
+                            <i class="fas fa-file-invoice action-icon"></i>
+                        </div>
+                        <h3 class="action-title">Upload Invoice</h3>
+                        <p class="action-description">Submit expense invoices</p>
+                    </div>
+
+                    <div class="action-card" data-action="leave">
+                        <div class="action-icon-wrapper">
+                            <i class="fas fa-calendar-alt action-icon"></i>
+                        </div>
+                        <h3 class="action-title">Apply Leave</h3>
+                        <p class="action-description">Request time off</p>
+                    </div>
+
+                    <div class="action-card" data-action="kpi">
+                        <div class="action-icon-wrapper">
+                            <i class="fas fa-chart-line action-icon"></i>
+                        </div>
+                        <h3 class="action-title">Input KPI</h3>
+                        <p class="action-description">Track performance metrics</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity Section -->
+            <section class="activity-section">
+                <h2 class="section-title">Recent Activity</h2>
+                <div class="activity-feed" id="activityFeed">
+                    <div class="activity-empty">
+                        <i class="fas fa-inbox activity-empty-icon"></i>
+                        <p class="activity-empty-text">No recent activity</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav" id="bottomNav">
+            <!-- Navigation will be injected by JavaScript -->
+        </nav>
+    </div>
+
+    <script type="module" src="../js/pages/dashboard.js"></script>
+</body>
+</html>

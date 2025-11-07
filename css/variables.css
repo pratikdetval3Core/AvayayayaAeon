@@ -1,0 +1,102 @@
+/* CSS Variables for Color Scheme, Typography, and Spacing */
+
+:root {
+  /* Color Scheme - Modern Blue Theme */
+  --primary-color: #5B7FFF;
+  --primary-dark: #4A6FEE;
+  --primary-light: #7B9FFF;
+  --secondary-color: #10b981;
+  --secondary-dark: #059669;
+  --secondary-light: #34d399;
+  --danger-color: #FF6B6B;
+  --danger-dark: #EE5A5A;
+  --danger-light: #FF8B8B;
+  --warning-color: #FFB84D;
+  --warning-dark: #EEA73C;
+  --warning-light: #FFC86D;
+  --info-color: #5B7FFF;
+  --success-color: #4ECB71;
+  
+  /* Text Colors */
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --text-inverse: #ffffff;
+  
+  /* Background Colors */
+  --background: #F5F7FA;
+  --background-secondary: #E8ECF4;
+  --surface: #ffffff;
+  --surface-hover: #F9FAFB;
+  --card-background: #FFFFFF;
+  
+  /* Border Colors */
+  --border: #E8ECF4;
+  --border-light: #F0F3F8;
+  --border-dark: #D1D8E0;
+  
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;   /* 4px */
+  --spacing-sm: 0.5rem;    /* 8px */
+  --spacing-md: 1rem;      /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 3rem;     /* 48px */
+  --spacing-3xl: 4rem;     /* 64px */
+  
+  /* Border Radius - More rounded for modern look */
+  --radius-sm: 0.5rem;     /* 8px */
+  --radius-md: 0.75rem;    /* 12px */
+  --radius-lg: 1rem;       /* 16px */
+  --radius-xl: 1.25rem;    /* 20px */
+  --radius-2xl: 1.5rem;    /* 24px */
+  --radius-full: 9999px;
+  
+  /* Shadows - Softer, more subtle */
+  --shadow-sm: 0 2px 4px 0 rgba(91, 127, 255, 0.08);
+  --shadow-md: 0 4px 12px 0 rgba(91, 127, 255, 0.12);
+  --shadow-lg: 0 8px 24px 0 rgba(91, 127, 255, 0.15);
+  --shadow-xl: 0 12px 32px 0 rgba(91, 127, 255, 0.18);
+  --shadow-card: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 200ms ease-in-out;
+  --transition-slow: 300ms ease-in-out;
+  
+  /* Z-index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  
+  /* Touch Targets */
+  --touch-target-min: 44px;
+  
+  /* Breakpoints (for reference in JS) */
+  --breakpoint-mobile: 320px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+}

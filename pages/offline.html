@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Offline - Employee Payroll & Attendance System">
+  <title>Offline - Payroll App</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/utilities.css">
+  
+  <style>
+    .offline-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: var(--spacing-xl);
+      text-align: center;
+      background: var(--background);
+    }
+    
+    .offline-icon {
+      font-size: 5rem;
+      margin-bottom: var(--spacing-lg);
+      opacity: 0.5;
+    }
+    
+    .offline-title {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .offline-message {
+      font-size: var(--font-size-base);
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-xl);
+      max-width: 400px;
+    }
+    
+    .offline-actions {
+      display: flex;
+      gap: var(--spacing-md);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .retry-btn {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: var(--primary-color);
+      color: var(--text-inverse);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+    
+    .retry-btn:hover {
+      background: var(--primary-dark, #1e40af);
+    }
+    
+    .home-btn {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: transparent;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all var(--transition-fast);
+    }
+    
+    .home-btn:hover {
+      background: var(--primary-color);
+      color: var(--text-inverse);
+    }
+    
+    .connection-status {
+      margin-top: var(--spacing-xl);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+    }
+    
+    .connection-status.online {
+      background: var(--success-light, #d1fae5);
+      color: var(--success-color);
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-container">
+    <div class="offline-icon">📡</div>
+    
+    <h1 class="offline-title">You're Offline</h1>
+    
+    <p class="offline-message">
+      It looks like you've lost your internet connection. 
+      Don't worry, your data is safe and will sync when you're back online.
+    </p>
+    
+    <div class="offline-actions">
+      <button class="retry-btn" onclick="retryConnection()">
+        Try Again
+      </button>
+      <a href="/index.html" class="home-btn">
+        Go to Home
+      </a>
+    </div>
+    
+    <div class="connection-status" id="connectionStatus">
+      Checking connection...
+    </div>
+  </div>
+  
+  <script>
+    // Check connection status
+    function updateConnectionStatus() {
+      const statusEl = document.getElementById('connectionStatus');
+      
+      if (navigator.onLine) {
+        statusEl.textContent = '✓ Connection restored';
+        statusEl.classList.add('online');
+        
+        // Redirect to home after a short delay
+        setTimeout(() => {
+          window.location.href = '/index.html';
+        }, 1500);
+      } else {
+        statusEl.textContent = '✗ No internet connection';
+        statusEl.classList.remove('online');
+      }
+    }
+    
+    // Retry connection
+    function retryConnection() {
+      updateConnectionStatus();
+      
+      if (navigator.onLine) {
+        // Try to reload the original page
+        if (document.referrer) {
+          window.location.href = document.referrer;
+        } else {
+          window.location.href = '/index.html';
+        }
+      }
+    }
+    
+    // Listen for online/offline events
+    window.addEventListener('online', updateConnectionStatus);
+    window.addEventListener('offline', updateConnectionStatus);
+    
+    // Initial check
+    updateConnectionStatus();
+    
+    // Periodic check
+    setInterval(updateConnectionStatus, 5000);
+  </script>
+</body>
+</html>

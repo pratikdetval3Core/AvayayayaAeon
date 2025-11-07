@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Components Demo</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/utilities.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container py-xl">
+        <h1 class="mb-xl">UI Components Demo</h1>
+
+        <!-- Buttons Section -->
+        <section class="mb-2xl">
+            <h2 class="mb-lg">Buttons</h2>
+            <div class="d-flex flex-wrap gap-md mb-md">
+                <button class="btn btn-primary">Primary Button</button>
+                <button class="btn btn-secondary">Secondary Button</button>
+                <button class="btn btn-danger">Danger Button</button>
+                <button class="btn btn-outline">Outline Button</button>
+                <button class="btn btn-primary" disabled>Disabled Button</button>
+            </div>
+            <div class="d-flex flex-wrap gap-md mb-md">
+                <button class="btn btn-primary btn-sm">Small Button</button>
+                <button class="btn btn-primary">Medium Button</button>
+                <button class="btn btn-primary btn-lg">Large Button</button>
+            </div>
+            <button class="btn btn-primary btn-block">Block Button</button>
+        </section>
+
+        <!-- Cards Section -->
+        <section class="mb-2xl">
+            <h2 class="mb-lg">Cards</h2>
+            <div class="d-grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 gap-md">
+                <div class="card">
+                    <div class="card-header">Card Title</div>
+                    <div class="card-body">
+                        This is a basic card with a header and body content.
+                    </div>
+                </div>
+                <div class="card card-clickable">
+                    <div class="card-header">Clickable Card</div>
+                    <div class="card-body">
+                        This card has hover effects and can be clicked.
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">Card with Badge</div>
+                    <div class="card-body">
+                        <span class="badge badge-success">Active</span>
+                        <p class="mt-sm mb-0">Card content with a status badge.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Inputs Section -->
+        <section class="mb-2xl">
+            <h2 class="mb-lg">Form Inputs</h2>
+            <div class="card">
+                <form>
+                    <div class="form-group">
+                        <label class="form-label" for="demo-text">Text Input</label>
+                        <input type="text" class="form-input" id="demo-text" placeholder="Enter text">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="demo-email">Email Input</label>
+                        <input type="email" class="form-input" id="demo-email" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="demo-select">Select Dropdown</label>
+                        <select class="form-select" id="demo-select">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="demo-textarea">Textarea</label>
+                        <textarea class="form-textarea" id="demo-textarea" placeholder="Enter message"></textarea>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="demo-check">
+                        <label class="form-check-label" for="demo-check">I agree to the terms</label>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Badges Section -->
+        <section class="mb-2xl">
+            <h2 class="mb-lg">Badges</h2>
+            <div class="d-flex flex-wrap gap-md mb-md">
+                <span class="badge badge-success">Success</span>
+                <span class="badge badge-warning">Warning</span>
+                <span class="badge badge-danger">Danger</span>
+                <span class="badge badge-info">Info</span>
+            </div>
+            <div class="d-flex flex-wrap gap-md mb-md">
+                <span class="badge badge-success badge-sm">Small</span>
+                <span class="badge badge-success">Medium</span>
+                <span class="badge badge-success badge-lg">Large</span>
+            </div>
+            <div class="d-flex flex-wrap gap-md">
+                <span class="badge badge-success badge-dot">Active</span>
+                <span class="badge badge-warning badge-dot">Pending</span>
+                <span class="badge badge-danger badge-dot">Rejected</span>
+            </div>
+        </section>
+
+        <!-- Alerts Section -->
+        <section class="mb-2xl">
+            <h2 class="mb-lg">Alerts</h2>
+            <div class="alert alert-success">
+                <div class="alert-icon">✓</div>
+                <div class="alert-content">
+                    <div class="alert-title">Success!</div>
+                    <div>Your action was completed successfully.</div>
+                </div>
+            </div>
+            <div class="alert alert-warning">
+                <div class="alert-icon">⚠</div>
+                <div class="alert-content">
+                    <div class="alert-title">Warning</div>
+                    <div>Please review this information carefully.</div>
+                </div>
+            </div>
+            <div class="alert alert-error">
+                <div class="alert-icon">✕</div>
+                <div class="alert-content">
+                    <div class="alert-title">Error</div>
+                    <div>Something went wrong. Please try again.</div>
+                </div>
+            </div>
+            <div class="alert alert-info">
+                <div class="alert-icon">ℹ</div>
+                <div class="alert-content">
+                    <div class="alert-title">Information</div>
+                    <div>Here's some helpful information for you.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading States Section -->
+        <section class="mb-2xl">
+            <h2 class="mb-lg">Loading States</h2>
+            <div class="card mb-md">
+                <div class="card-header">Spinners</div>
+                <div class="card-body d-flex gap-lg align-center">
+                    <div class="spinner" style="width: 16px; height: 16px;"></div>
+                    <div class="spinner" style="width: 24px; height: 24px;"></div>
+                    <div class="spinner" style="width: 40px; height: 40px;"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">Skeleton Loading</div>
+                <div class="card-body">
+                    <div class="skeleton" style="width: 60%; height: 24px; margin-bottom: 12px;"></div>
+                    <div class="skeleton" style="width: 100%; height: 16px; margin-bottom: 8px;"></div>
+                    <div class="skeleton" style="width: 80%; height: 16px; margin-bottom: 8px;"></div>
+                    <div class="skeleton" style="width: 40%; height: 16px;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Empty State Section -->
+        <section class="mb-2xl">
+            <h2 class="mb-lg">Empty State</h2>
+            <div class="card">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📭</div>
+                    <h3 class="mb-sm">No Data Available</h3>
+                    <p class="text-secondary mb-lg">There is nothing to display yet. Get started by adding some data.</p>
+                    <button class="btn btn-primary">Add Data</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Utility Classes Demo -->
+        <section class="mb-2xl">
+            <h2 class="mb-lg">Utility Classes</h2>
+            <div class="card mb-md">
+                <div class="card-header">Flexbox Utilities</div>
+                <div class="card-body">
+                    <div class="d-flex justify-between align-center p-md bg-background rounded-md mb-sm">
+                        <span>Space Between</span>
+                        <span class="badge badge-info">Badge</span>
+                    </div>
+                    <div class="d-flex justify-center align-center p-md bg-background rounded-md mb-sm">
+                        <span>Centered Content</span>
+                    </div>
+                    <div class="d-flex gap-md p-md bg-background rounded-md">
+                        <div class="flex-1 p-sm bg-surface rounded-sm">Flex 1</div>
+                        <div class="flex-1 p-sm bg-surface rounded-sm">Flex 1</div>
+                        <div class="flex-1 p-sm bg-surface rounded-sm">Flex 1</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">Grid Utilities</div>
+                <div class="card-body">
+                    <div class="d-grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-md">
+                        <div class="p-md bg-background rounded-md text-center">Col 1</div>
+                        <div class="p-md bg-background rounded-md text-center">Col 2</div>
+                        <div class="p-md bg-background rounded-md text-center">Col 3</div>
+                        <div class="p-md bg-background rounded-md text-center">Col 4</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography Section -->
+        <section class="mb-2xl">
+            <h2 class="mb-lg">Typography</h2>
+            <div class="card">
+                <h1 class="mb-sm">Heading 1</h1>
+                <h2 class="mb-sm">Heading 2</h2>
+                <h3 class="mb-sm">Heading 3</h3>
+                <h4 class="mb-sm">Heading 4</h4>
+                <h5 class="mb-sm">Heading 5</h5>
+                <h6 class="mb-md">Heading 6</h6>
+                <p class="text-primary mb-sm">Primary text color</p>
+                <p class="text-secondary mb-sm">Secondary text color</p>
+                <p class="text-tertiary mb-sm">Tertiary text color</p>
+                <p class="text-xs mb-sm">Extra small text</p>
+                <p class="text-sm mb-sm">Small text</p>
+                <p class="text-base mb-sm">Base text</p>
+                <p class="text-lg mb-sm">Large text</p>
+                <p class="text-xl mb-0">Extra large text</p>
+            </div>
+        </section>
+
+        <!-- Interactive Demo Buttons -->
+        <section class="mb-2xl">
+            <h2 class="mb-lg">Interactive Demos</h2>
+            <div class="d-flex flex-wrap gap-md">
+                <button class="btn btn-primary" id="show-toast">Show Toast</button>
+                <button class="btn btn-secondary" id="show-modal">Show Modal</button>
+                <button class="btn btn-warning" id="show-confirm">Show Confirm</button>
+                <button class="btn btn-info" id="show-loading">Show Loading</button>
+            </div>
+        </section>
+    </div>
+
+    <script type="module">
+        import UIComponents from '../js/components/UIComponents.js';
+        import LoadingStates from '../js/components/LoadingStates.js';
+
+        // Toast demo
+        document.getElementById('show-toast').addEventListener('click', () => {
+            UIComponents.showToast({
+                message: 'This is a success toast notification!',
+                variant: 'success',
+                duration: 3000
+            });
+        });
+
+        // Modal demo
+        document.getElementById('show-modal').addEventListener('click', () => {
+            UIComponents.createModal({
+                title: 'Demo Modal',
+                content: '<p>This is a modal dialog with custom content.</p><p>It can contain any HTML content you want.</p>',
+                buttons: [
+                    {
+                        text: 'Cancel',
+                        variant: 'outline',
+                        onClick: function() {
+                            this.close();
+                        }
+                    },
+                    {
+                        text: 'Confirm',
+                        variant: 'primary',
+                        onClick: function() {
+                            UIComponents.showToast({
+                                message: 'Modal confirmed!',
+                                variant: 'success'
+                            });
+                            this.close();
+                        }
+                    }
+                ]
+            });
+        });
+
+        // Confirm demo
+        document.getElementById('show-confirm').addEventListener('click', async () => {
+            const confirmed = await UIComponents.confirm({
+                title: 'Confirm Action',
+                message: 'Are you sure you want to proceed with this action?',
+                confirmText: 'Yes, proceed',
+                cancelText: 'Cancel',
+                variant: 'danger'
+            });
+            
+            if (confirmed) {
+                UIComponents.showToast({
+                    message: 'Action confirmed!',
+                    variant: 'success'
+                });
+            } else {
+                UIComponents.showToast({
+                    message: 'Action cancelled',
+                    variant: 'info'
+                });
+            }
+        });
+
+        // Loading demo
+        document.getElementById('show-loading').addEventListener('click', () => {
+            const hideLoading = LoadingStates.showLoading('Processing...');
+            setTimeout(() => {
+                hideLoading();
+                UIComponents.showToast({
+                    message: 'Loading complete!',
+                    variant: 'success'
+                });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

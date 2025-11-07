@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Welcome - Employee Payroll & Attendance System">
+  <title>Welcome - Payroll App</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/modern-mobile.css">
+  <link rel="stylesheet" href="../css/utilities.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  
+  <style>
+    body {
+      background: linear-gradient(135deg, #5B7FFF 0%, #4A6FEE 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-md);
+    }
+    
+    .welcome-container {
+      max-width: 480px;
+      width: 100%;
+    }
+    
+    .welcome-card {
+      background: white;
+      border-radius: var(--radius-2xl);
+      padding: var(--spacing-2xl);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      animation: slideInUp 0.5s ease;
+    }
+    
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .welcome-logo {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(135deg, #5B7FFF 0%, #7B9FFF 100%);
+      border-radius: var(--radius-2xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--spacing-lg);
+      font-size: 56px;
+      box-shadow: var(--shadow-lg);
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .welcome-title {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .welcome-subtitle {
+      font-size: var(--font-size-base);
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-xl);
+      line-height: 1.5;
+    }
+    
+    .welcome-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+    
+    .welcome-btn {
+      padding: var(--spacing-md) var(--spacing-xl);
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition-base);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-sm);
+      min-height: 52px;
+      text-decoration: none;
+      position: relative;
+    }
+    
+    .welcome-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #5B7FFF 0%, #4A6FEE 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(91, 127, 255, 0.3);
+    }
+    
+    .btn-outline {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+    
+    .btn-warning {
+      background: linear-gradient(135deg, #FFB84D 0%, #FF9F1C 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(255, 184, 77, 0.3);
+    }
+    
+    .demo-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #FF6B6B;
+      color: white;
+      padding: 4px 8px;
+      border-radius: var(--radius-full);
+      font-size: 10px;
+      font-weight: var(--font-weight-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      animation: pulse 2s ease infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .features-list {
+      text-align: left;
+      margin: var(--spacing-xl) 0;
+      padding: var(--spacing-lg);
+      background: var(--background);
+      border-radius: var(--radius-xl);
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-sm) 0;
+      color: var(--text-primary);
+      font-size: var(--font-size-sm);
+    }
+    
+    .feature-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(78, 203, 113, 0.15);
+      color: var(--success-color);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-size-base);
+      flex-shrink: 0;
+    }
+    
+    .welcome-footer {
+      margin-top: var(--spacing-xl);
+      padding-top: var(--spacing-lg);
+      border-top: 2px solid var(--border);
+    }
+    
+    .welcome-footer p {
+      font-size: var(--font-size-sm);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    .welcome-footer strong {
+      color: var(--primary-color);
+      font-weight: var(--font-weight-semibold);
+    }
+    
+    @media (max-width: 767px) {
+      .welcome-card {
+        padding: var(--spacing-xl);
+      }
+      
+      .welcome-logo {
+        width: 80px;
+        height: 80px;
+        font-size: 48px;
+      }
+      
+      .welcome-title {
+        font-size: var(--font-size-2xl);
+      }
+      
+      .welcome-subtitle {
+        font-size: var(--font-size-sm);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-container">
+    <div class="welcome-card">
+      <div class="welcome-logo">
+        💼
+      </div>
+      
+      <h1 class="welcome-title">
+        Welcome!
+      </h1>
+      
+      <p class="welcome-subtitle">
+        Modern Employee Payroll & Attendance Management System
+      </p>
+      
+      <div class="features-list">
+        <div class="feature-item">
+          <span class="feature-icon">✓</span>
+          <span>GPS-based Attendance Tracking</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✓</span>
+          <span>Invoice & Payroll Management</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✓</span>
+          <span>Leave Request System</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✓</span>
+          <span>Performance KPI Tracking</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✓</span>
+          <span>Real-time Analytics & Reports</span>
+        </div>
+      </div>
+      
+      <div class="welcome-actions">
+        <a href="demo-setup.html" class="btn btn-warning welcome-btn" style="position: relative;">
+          <span>🚀</span>
+          <span>Setup Demo Data</span>
+          <span class="demo-badge">NEW</span>
+        </a>
+        
+        <a href="login.html" class="btn btn-primary welcome-btn">
+          <span>🔐</span>
+          <span>Sign In</span>
+        </a>
+        
+        <a href="signup.html" class="btn btn-outline welcome-btn">
+          <span>✨</span>
+          <span>Create Account</span>
+        </a>
+      </div>
+      
+      <div class="welcome-footer">
+        <p>
+          First time here? Start with <strong>Setup Demo Data</strong> to explore the app with realistic sample data and test credentials.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
