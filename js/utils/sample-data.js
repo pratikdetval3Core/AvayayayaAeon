@@ -101,15 +101,39 @@ class SampleDataSeeder {
             // Employee 1 - John Doe
             {
                 id: 'user_emp_001',
+                username: 'john.doe',
                 email: 'john.doe@company.com',
                 password: await authService.hashPassword('Employee@123'),
                 firstName: 'John',
                 lastName: 'Doe',
                 userType: 'employee',
+                role: 'employee',
+                // General Info
+                employeeCode: 'PD0001',
+                dateOfJoining: '2025-11-01',
+                dateOfBirth: '2000-01-01',
+                gender: 'Male',
+                mobile: '8780149175',
+                permanentAddress: 'Ahmedabad, Ahmedabad',
+                temporaryAddress: 'Ahmedabad, Ahmedabad',
+                // Official Info
+                designation: 'Advisor - 1',
                 department: 'Engineering',
+                location: 'Ahmedabad',
+                state: 'GUJ',
+                dateOfConfirmation: 'N/A',
                 position: 'Senior Software Engineer',
+                // Other Info
+                bankName: 'ICICI BANK',
+                ifscCode: 'ICICI000001',
+                accountNumber: '0000001504',
+                pfNumber: 'PF123456',
+                esiNumber: 'ESI789012',
+                panNumber: 'AAABC1234P',
+                aadharNumber: '123456780987',
+                uanNumber: 'UAN123456',
+                voterIdNumber: 'VOT123456',
                 phoneNumber: '+1234567891',
-                dateOfJoining: '2021-03-15',
                 isActive: true,
                 profileImage: null,
                 createdAt: Date.now() - 200 * 24 * 60 * 60 * 1000
@@ -117,15 +141,39 @@ class SampleDataSeeder {
             // Employee 2 - Jane Smith
             {
                 id: 'user_emp_002',
+                username: 'jane.smith',
                 email: 'jane.smith@company.com',
                 password: await authService.hashPassword('Employee@123'),
                 firstName: 'Jane',
                 lastName: 'Smith',
                 userType: 'employee',
-                department: 'Marketing',
-                position: 'Marketing Manager',
-                phoneNumber: '+1234567892',
+                role: 'manager',
+                // General Info
+                employeeCode: 'PD0002',
                 dateOfJoining: '2021-06-01',
+                dateOfBirth: '1995-05-15',
+                gender: 'Female',
+                mobile: '9876543210',
+                permanentAddress: 'Mumbai, Maharashtra',
+                temporaryAddress: 'Mumbai, Maharashtra',
+                // Official Info
+                designation: 'Marketing Manager',
+                department: 'Marketing',
+                location: 'Mumbai',
+                state: 'MAH',
+                dateOfConfirmation: '2021-12-01',
+                position: 'Marketing Manager',
+                // Other Info
+                bankName: 'HDFC BANK',
+                ifscCode: 'HDFC000002',
+                accountNumber: '0000002504',
+                pfNumber: 'PF234567',
+                esiNumber: 'ESI890123',
+                panNumber: 'BBBCD2345Q',
+                aadharNumber: '234567891098',
+                uanNumber: 'UAN234567',
+                voterIdNumber: 'VOT234567',
+                phoneNumber: '+1234567892',
                 isActive: true,
                 profileImage: null,
                 createdAt: Date.now() - 180 * 24 * 60 * 60 * 1000
@@ -282,39 +330,81 @@ class SampleDataSeeder {
         console.log('[Sample Data] Seeding leave applications...');
 
         const employees = this.users.filter(u => u.userType === 'employee');
-        const leaveTypes = ['sick', 'vacation', 'personal', 'unpaid'];
+        const leaveTypes = ['sick', 'casual', 'vacation', 'personal', 'emergency', 'privilege'];
         const statuses = ['pending', 'approved', 'rejected'];
+        
+        const leaveReasons = {
+            sick: ['Medical appointment', 'Flu and fever', 'Doctor consultation', 'Health checkup', 'Recovery from illness'],
+            casual: ['Personal work', 'Family function', 'Home maintenance', 'Bank work', 'Personal errands'],
+            vacation: ['Family vacation', 'Holiday trip', 'Visiting hometown', 'Travel plans', 'Annual vacation'],
+            personal: ['Personal matters', 'Family emergency', 'Personal commitment', 'Family event', 'Personal work'],
+            emergency: ['Family emergency', 'Urgent personal matter', 'Medical emergency', 'Unexpected situation', 'Critical family issue'],
+            privilege: ['Planned leave', 'Extended vacation', 'Personal time off', 'Privilege leave', 'Annual leave']
+        };
 
-        for (let i = 0; i < 12; i++) {
-            const employee = employees[Math.floor(Math.random() * employees.length)];
-            const startDate = new Date();
-            startDate.setDate(startDate.getDate() + Math.floor(Math.random() * 60) - 30);
+        // Create leave applications for each employee
+        for (const employee of employees) {
+            // Create 3-5 leave applications per employee
+            const numLeaves = Math.floor(Math.random() * 3) + 3;
+            
+            for (let i = 0; i < numLeaves; i++) {
+                const leaveType = leaveTypes[Math.floor(Math.random() * leaveTypes.length)];
+                const status = statuses[Math.floor(Math.random() * statuses.length)];
+                
+                // Generate dates (mix of past, present, and future)
+                const daysOffset = Math.floor(Math.random() * 120) - 60; // -60 to +60 days
+                const startDate = new Date();
+                startDate.setDate(startDate.getDate() + daysOffset);
 
-            const endDate = new Date(startDate);
-            endDate.setDate(endDate.getDate() + Math.floor(Math.random() * 5) + 1);
+                const duration = Math.floor(Math.random() * 5) + 1; // 1-5 days
+                const endDate = new Date(startDate);
+                endDate.setDate(endDate.getDate() + duration - 1);
 
-            const leave = new Leave({
-                id: `leave_${Date.now()}_${i}`,
+                const reasons = leaveReasons[leaveType];
+                const reason = reasons[Math.floor(Math.random() * reasons.length)];
+
+                const leave = new Leave({
+                    id: `leave_${employee.id}_${Date.now()}_${i}`,
+                    userId: employee.id,
+                    leaveType: leaveType,
+                    startDate: startDate.toISOString().split('T')[0],
+                    endDate: endDate.toISOString().split('T')[0],
+                    duration: duration,
+                    reason: reason,
+                    status: status,
+                    appliedAt: Date.now() - Math.floor(Math.random() * 30) * 24 * 60 * 60 * 1000,
+                    reviewedAt: status !== 'pending' ? Date.now() - Math.floor(Math.random() * 10) * 24 * 60 * 60 * 1000 : null,
+                    reviewedBy: status !== 'pending' ? 'user_admin_001' : null,
+                    reviewNotes: status === 'approved' ? 'Approved as requested' : status === 'rejected' ? 'Not enough leave balance' : '',
+                    rejectionReason: status === 'rejected' ? 'Insufficient leave balance or overlapping dates' : null
+                });
+
+                await databaseService.add(databaseService.stores.LEAVE, leave.toJSON());
+                this.leave.push(leave);
+            }
+            
+            // Add leave balance for each employee
+            const leaveBalance = {
                 userId: employee.id,
-                leaveType: leaveTypes[Math.floor(Math.random() * leaveTypes.length)],
-                startDate: startDate.toISOString().split('T')[0],
-                endDate: endDate.toISOString().split('T')[0],
-                reason: [
-                    'Medical appointment',
-                    'Family vacation',
-                    'Personal matters',
-                    'Sick leave',
-                    'Emergency'
-                ][Math.floor(Math.random() * 5)],
-                status: statuses[Math.floor(Math.random() * statuses.length)],
-                appliedAt: Date.now() - Math.floor(Math.random() * 30) * 24 * 60 * 60 * 1000,
-                reviewedAt: Math.random() > 0.3 ? Date.now() - Math.floor(Math.random() * 10) * 24 * 60 * 60 * 1000 : null,
-                reviewedBy: Math.random() > 0.3 ? 'user_admin_001' : null,
-                reviewNotes: Math.random() > 0.5 ? 'Approved as requested' : ''
+                sickTotal: 12,
+                sickAvailed: Math.floor(Math.random() * 3),
+                casualTotal: 12,
+                casualAvailed: Math.floor(Math.random() * 4),
+                vacationTotal: 15,
+                vacationAvailed: Math.floor(Math.random() * 5),
+                personalTotal: 5,
+                personalAvailed: Math.floor(Math.random() * 2),
+                emergencyTotal: 3,
+                emergencyAvailed: Math.floor(Math.random() * 2),
+                privilegeTotal: 2,
+                privilegeAvailed: Math.floor(Math.random() * 1)
+            };
+            
+            // Store leave balance (you may need to add this to your database schema)
+            await databaseService.add(databaseService.stores.LEAVE_BALANCE || databaseService.stores.LEAVE, {
+                id: `leave_balance_${employee.id}`,
+                ...leaveBalance
             });
-
-            await databaseService.add(databaseService.stores.LEAVE, leave.toJSON());
-            this.leave.push(leave);
         }
 
         console.log(`[Sample Data] Seeded ${this.leave.length} leave applications`);

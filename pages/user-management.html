@@ -9,19 +9,20 @@
     <link rel="stylesheet" href="../css/variables.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/modern-mobile.css">
+    <link rel="stylesheet" href="../css/modern-forms.css">
     <link rel="stylesheet" href="../css/user-management.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div id="app">
         <!-- Header -->
-        <header class="page-header">
-            <div class="header-content">
-                <button class="back-btn" id="backBtn">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <h1 class="header-title">User Management</h1>
-            </div>
+        <header class="dashboard-header">
+            <button onclick="window.history.back()" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1 class="welcome-title">User Management</h1>
+            <p class="welcome-subtitle">Manage users and permissions</p>
         </header>
 
         <!-- Main Content -->
@@ -183,7 +184,7 @@
         </div>
 
         <!-- Bottom Navigation -->
-        <nav class="bottom-nav" id="bottomNav">
+        <nav id="bottomNav" class="bottom-nav">
             <!-- Navigation will be injected by JavaScript -->
         </nav>
     </div>

@@ -7,58 +7,107 @@
   <link rel="stylesheet" href="../css/variables.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/components.css">
-  <link rel="stylesheet" href="../css/reports.css">
   <link rel="stylesheet" href="../css/modern-mobile.css">
+  <link rel="stylesheet" href="../css/modern-forms.css">
+  <link rel="stylesheet" href="../css/reports.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <div class="page-container">
     <!-- Header -->
-    <header class="page-header">
-      <h1>Reports</h1>
-      <p class="subtitle">Generate and view reports</p>
+    <header class="dashboard-header">
+      <button onclick="window.history.back()" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1 class="welcome-title">Reports</h1>
+      <p class="welcome-subtitle">Generate and view reports</p>
     </header>
+
+    <!-- Quick Report Cards -->
+    <section class="quick-reports-section">
+      <div class="quick-reports-grid">
+        <div class="quick-report-card" data-report="attendance">
+          <div class="quick-report-icon">
+            <i class="fas fa-user-check"></i>
+          </div>
+          <h3 class="quick-report-title">Attendance</h3>
+          <p class="quick-report-desc">View attendance records</p>
+        </div>
+        
+        <div class="quick-report-card" data-report="leave">
+          <div class="quick-report-icon">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3 class="quick-report-title">Leave</h3>
+          <p class="quick-report-desc">Leave applications report</p>
+        </div>
+        
+        <div class="quick-report-card" data-report="kpi">
+          <div class="quick-report-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="quick-report-title">KPI</h3>
+          <p class="quick-report-desc">Performance metrics</p>
+        </div>
+        
+        <div class="quick-report-card" data-report="invoice">
+          <div class="quick-report-icon">
+            <i class="fas fa-file-invoice"></i>
+          </div>
+          <h3 class="quick-report-title">Invoice</h3>
+          <p class="quick-report-desc">Invoice summary</p>
+        </div>
+      </div>
+    </section>
 
     <!-- Report Configuration -->
     <section class="report-config">
-      <div class="card">
-        <h2>Generate Report</h2>
+      <div class="form-card">
+        <h2 class="section-title">
+          <i class="fas fa-filter"></i>
+          Generate Custom Report
+        </h2>
         
         <form id="reportForm" class="report-form">
           <!-- Report Type Selector -->
           <div class="form-group">
-            <label for="reportType">Report Type</label>
-            <select id="reportType" name="reportType" required>
+            <label for="reportType" class="form-label">Report Type *</label>
+            <select id="reportType" name="reportType" class="form-select" required>
               <option value="">Select report type</option>
               <option value="attendance">Attendance Report</option>
               <option value="leave">Leave Report</option>
               <option value="kpi">KPI Report</option>
+              <option value="invoice">Invoice Report</option>
             </select>
           </div>
 
           <!-- Date Range Picker -->
           <div class="form-row">
             <div class="form-group">
-              <label for="startDate">Start Date</label>
-              <input type="date" id="startDate" name="startDate" required>
+              <label for="startDate" class="form-label">Start Date *</label>
+              <input type="date" id="startDate" name="startDate" class="form-input" required>
             </div>
             <div class="form-group">
-              <label for="endDate">End Date</label>
-              <input type="date" id="endDate" name="endDate" required>
+              <label for="endDate" class="form-label">End Date *</label>
+              <input type="date" id="endDate" name="endDate" class="form-input" required>
             </div>
           </div>
 
           <!-- User Filter (Admin Only) -->
           <div class="form-group" id="userFilterGroup" style="display: none;">
-            <label for="userFilter">Filter by User</label>
-            <select id="userFilter" name="userFilter">
+            <label for="userFilter" class="form-label">Filter by User</label>
+            <select id="userFilter" name="userFilter" class="form-select">
               <option value="">All Users</option>
             </select>
           </div>
 
           <!-- Generate Button -->
-          <button type="submit" class="btn btn-primary" id="generateBtn">
+          <button type="submit" class="btn btn-primary btn-block" id="generateBtn">
+            <i class="fas fa-chart-bar"></i>
             <span class="btn-text">Generate Report</span>
-            <span class="btn-loader" style="display: none;">Generating...</span>
+            <span class="btn-loader" style="display: none;">
+              <i class="fas fa-spinner fa-spin"></i>
+            </span>
           </button>
         </form>
       </div>
@@ -66,14 +115,18 @@
 
     <!-- Report Display Area -->
     <section class="report-display" id="reportDisplay" style="display: none;">
-      <div class="card">
+      <div class="report-card">
         <div class="report-header">
-          <div>
-            <h2 id="reportTitle">Report</h2>
+          <div class="report-header-content">
+            <h2 id="reportTitle" class="report-title">
+              <i class="fas fa-file-alt"></i>
+              Report
+            </h2>
             <p class="report-meta" id="reportMeta"></p>
           </div>
           <button class="btn btn-secondary" id="exportBtn">
-            Export CSV
+            <i class="fas fa-download"></i>
+            <span>Export CSV</span>
           </button>
         </div>
 
@@ -95,20 +148,26 @@
 
         <!-- Empty State -->
         <div class="empty-state" id="emptyState" style="display: none;">
-          <p>No data found for the selected period.</p>
+          <div class="empty-illustration">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <p class="empty-text">No Data Found</p>
+          <p class="empty-subtext">No data found for the selected period.</p>
         </div>
       </div>
     </section>
 
     <!-- Loading State -->
-    <div class="loading-state" id="loadingState" style="display: none;">
-      <div class="spinner"></div>
-      <p>Generating report...</p>
+    <div class="loading-overlay" id="loadingState" style="display: none;">
+      <div class="loading-content">
+        <div class="spinner"></div>
+        <p>Generating report...</p>
+      </div>
     </div>
   </div>
 
   <!-- Bottom Navigation -->
-  <nav id="bottomNav"></nav>
+  <nav id="bottomNav" class="bottom-nav"></nav>
 
   <script type="module" src="../js/pages/reports.js"></script>
 </body>

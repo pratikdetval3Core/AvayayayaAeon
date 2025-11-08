@@ -35,7 +35,7 @@ class BottomNavigation {
       },
       { 
         id: 'leave', 
-        icon: 'fa-calendar-alt', 
+        icon: 'fa-calendar-days', 
         label: 'Leave', 
         href: 'leave.html',
         permission: null
@@ -100,7 +100,7 @@ class BottomNavigation {
            data-nav="${item.id}"
            aria-label="${item.label}"
            aria-current="${isActive ? 'page' : 'false'}">
-          <i class="fas ${item.icon} nav-icon"></i>
+          <i class="fa-solid ${item.icon} nav-icon"></i>
           <span class="nav-label">${item.label}</span>
         </a>
       `;

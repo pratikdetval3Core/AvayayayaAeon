@@ -7,13 +7,20 @@
   <link rel="stylesheet" href="../css/variables.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/modern-mobile.css">
+  <link rel="stylesheet" href="../css/modern-forms.css">
   <link rel="stylesheet" href="../css/leave.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <div class="page-container">
     <!-- Header -->
-    <header class="page-header">
-      <h1>Leave Approvals</h1>
+    <header class="dashboard-header">
+      <button onclick="window.history.back()" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1 class="welcome-title">Leave Approvals</h1>
+      <p class="welcome-subtitle">Review and approve leave requests</p>
     </header>
 
     <!-- Pending Leave Requests -->
@@ -53,7 +60,7 @@
   </div>
 
   <!-- Bottom Navigation -->
-  <div id="bottomNav"></div>
+  <nav id="bottomNav" class="bottom-nav"></nav>
 
   <script type="module" src="../js/pages/leave-approval.js"></script>
 </body>

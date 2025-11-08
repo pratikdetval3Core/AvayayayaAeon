@@ -36,6 +36,25 @@ function initDashboard() {
   
   // Setup quick action handlers
   setupQuickActions();
+  
+  // Setup logout button
+  setupLogoutButton();
+}
+
+/**
+ * Setup logout button handler
+ */
+function setupLogoutButton() {
+  const logoutBtn = document.getElementById('logoutBtn');
+  
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => {
+      if (confirm('Are you sure you want to logout?')) {
+        authService.logout();
+        window.location.href = 'login.html';
+      }
+    });
+  }
 }
 
 /**

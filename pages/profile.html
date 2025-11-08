@@ -18,10 +18,13 @@
         <!-- Profile Header -->
         <header class="profile-header">
             <div class="header-content">
-                <button class="back-btn" id="backBtn">
-                    <i class="fas fa-arrow-left"></i>
+                <button class="back-btn" id="backBtn" aria-label="Go back" style="display: flex !important; visibility: visible !important; opacity: 1 !important; background: rgba(255,255,255,0.2) !important; color: white !important; width: 40px !important; height: 40px !important; border-radius: 50% !important; align-items: center !important; justify-content: center !important; border: none !important; cursor: pointer !important; font-size: 18px !important;">
+                    <i class="fa-solid fa-arrow-left" style="color: white !important; font-size: 18px !important;"></i>
                 </button>
-                <h1 class="header-title">Profile</h1>
+                <div class="header-text">
+                    <h1 class="header-title">My Profile</h1>
+                    <p class="header-subtitle">Manage your account settings</p>
+                </div>
             </div>
         </header>
 
@@ -30,7 +33,7 @@
             <!-- User Info Card -->
             <section class="profile-card">
                 <div class="profile-avatar">
-                    <i class="fas fa-user-circle"></i>
+                    <i class="fa-solid fa-user-circle"></i>
                 </div>
                 <div class="profile-info">
                     <h2 class="profile-name" id="profileName">Loading...</h2>
@@ -45,7 +48,7 @@
             <!-- Location Section -->
             <section class="section-card">
                 <h3 class="section-title">
-                    <i class="fas fa-map-marker-alt"></i>
+                    <i class="fa-solid fa-map-marker-alt"></i>
                     Current Location
                 </h3>
                 <div class="location-display-wrapper" id="locationDisplay">
@@ -56,23 +59,23 @@
             <!-- Quick Actions -->
             <section class="section-card">
                 <h3 class="section-title">
-                    <i class="fas fa-bolt"></i>
+                    <i class="fa-solid fa-bolt"></i>
                     Quick Actions
                 </h3>
                 <div class="quick-actions">
                     <a href="employee-details.html" class="action-btn">
                         <div class="action-icon">
-                            <i class="fas fa-id-card"></i>
+                            <i class="fa-solid fa-id-card"></i>
                         </div>
                         <span class="action-text">Employee Details</span>
-                        <i class="fas fa-chevron-right action-arrow"></i>
+                        <i class="fa-solid fa-chevron-right action-arrow"></i>
                     </a>
                     <a href="leave-menu.html" class="action-btn">
                         <div class="action-icon">
-                            <i class="fas fa-calendar-alt"></i>
+                            <i class="fa-solid fa-calendar-alt"></i>
                         </div>
                         <span class="action-text">Leave Management</span>
-                        <i class="fas fa-chevron-right action-arrow"></i>
+                        <i class="fa-solid fa-chevron-right action-arrow"></i>
                     </a>
                 </div>
             </section>
@@ -81,11 +84,11 @@
             <section class="section-card">
                 <div class="section-header">
                     <h3 class="section-title">
-                        <i class="fas fa-info-circle"></i>
+                        <i class="fa-solid fa-info-circle"></i>
                         Profile Details
                     </h3>
                     <button class="btn-icon" id="editProfileBtn">
-                        <i class="fas fa-edit"></i>
+                        <i class="fa-solid fa-edit"></i>
                     </button>
                 </div>
                 <div class="details-list">
@@ -115,7 +118,7 @@
             <!-- Change Password Section -->
             <section class="section-card">
                 <h3 class="section-title">
-                    <i class="fas fa-lock"></i>
+                    <i class="fa-solid fa-lock"></i>
                     Change Password
                 </h3>
                 <form id="changePasswordForm" class="password-form">
@@ -132,7 +135,7 @@
                         <input type="password" id="confirmPassword" class="form-input" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">
-                        <i class="fas fa-key"></i>
+                        <i class="fa-solid fa-key"></i>
                         Change Password
                     </button>
                 </form>
@@ -141,7 +144,7 @@
             <!-- Actions Section -->
             <section class="section-card actions-section">
                 <button class="btn btn-danger btn-full" id="logoutBtn">
-                    <i class="fas fa-sign-out-alt"></i>
+                    <i class="fa-solid fa-sign-out-alt"></i>
                     Logout
                 </button>
             </section>
@@ -153,7 +156,7 @@
                 <div class="modal-header">
                     <h3 class="modal-title">Edit Profile</h3>
                     <button class="modal-close" id="closeModalBtn">
-                        <i class="fas fa-times"></i>
+                        <i class="fa-solid fa-times"></i>
                     </button>
                 </div>
                 <form id="editProfileForm" class="modal-body">
@@ -168,7 +171,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline" id="cancelEditBtn">Cancel</button>
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i>
+                            <i class="fa-solid fa-save"></i>
                             Save Changes
                         </button>
                     </div>
@@ -177,8 +180,28 @@
         </div>
 
         <!-- Bottom Navigation -->
-        <nav class="bottom-nav" id="bottomNav">
-            <!-- Navigation will be injected by JavaScript -->
+        <nav class="bottom-nav" id="bottomNav" style="position: fixed !important; bottom: 0 !important; left: 0 !important; right: 0 !important; background: white !important; z-index: 1000 !important; display: flex !important; visibility: visible !important; opacity: 1 !important; padding: 12px 16px !important; box-shadow: 0 -4px 12px rgba(0,0,0,0.08) !important; border-radius: 24px 24px 0 0 !important; justify-content: space-around !important; align-items: center !important;">
+            <!-- Navigation items -->
+            <a href="dashboard.html" class="nav-item" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px; text-decoration: none; color: #6b7280; min-width: 60px;">
+                <i class="fa-solid fa-home" style="font-size: 20px;"></i>
+                <span style="font-size: 12px; font-weight: 500;">Home</span>
+            </a>
+            <a href="attendance.html" class="nav-item" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px; text-decoration: none; color: #6b7280; min-width: 60px;">
+                <i class="fa-solid fa-user-check" style="font-size: 20px;"></i>
+                <span style="font-size: 12px; font-weight: 500;">Attendance</span>
+            </a>
+            <a href="leave.html" class="nav-item" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px; text-decoration: none; color: #6b7280; min-width: 60px;">
+                <i class="fa-solid fa-calendar-days" style="font-size: 20px;"></i>
+                <span style="font-size: 12px; font-weight: 500;">Leave</span>
+            </a>
+            <a href="reports.html" class="nav-item" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px; text-decoration: none; color: #6b7280; min-width: 60px;">
+                <i class="fa-solid fa-chart-bar" style="font-size: 20px;"></i>
+                <span style="font-size: 12px; font-weight: 500;">Reports</span>
+            </a>
+            <a href="profile.html" class="nav-item active" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px; border-radius: 12px; background: rgba(91, 127, 255, 0.1); text-decoration: none; color: #5B7FFF; min-width: 60px;">
+                <i class="fa-solid fa-user" style="font-size: 20px;"></i>
+                <span style="font-size: 12px; font-weight: 500;">Profile</span>
+            </a>
         </nav>
     </div>
 

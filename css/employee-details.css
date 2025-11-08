@@ -40,24 +40,23 @@
   transition: all var(--transition-fast);
   position: relative;
   text-align: center;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  margin-bottom: -2px;
 }
 
 .tab:hover {
   color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .tab.active {
-  color: white;
+  background: white;
+  color: var(--primary-color);
+  border-bottom: 2px solid white;
 }
 
 .tab.active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: white;
+  display: none;
 }
 
 /* ========================================

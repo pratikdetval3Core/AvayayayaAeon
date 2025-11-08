@@ -531,6 +531,7 @@ class InvoicePage {
     
     setTimeout(() => {
       this.elements.toast.className = 'toast';
+      this.elements.toast.textContent = ''; // Clear content when hiding
     }, 3000);
   }
 }

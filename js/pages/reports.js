@@ -476,10 +476,7 @@ class ReportsPage {
 
   renderBottomNav() {
     const bottomNav = new BottomNavigation('bottomNav', 'reports');
-    const navContainer = document.getElementById('bottomNav');
-    if (navContainer) {
-      navContainer.innerHTML = bottomNav.render();
-    }
+    bottomNav.render();
   }
 }
 
