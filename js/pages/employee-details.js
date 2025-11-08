@@ -63,7 +63,39 @@ class EmployeeDetailsPage {
   async loadEmployeeData() {
     try {
       // Get employee data from current user
-      const employee = this.currentUser;
+      let employee = this.currentUser;
+
+      // If employee data is missing, use sample data
+      if (!employee.employeeCode) {
+        employee = {
+          ...employee,
+          // General Info
+          employeeCode: 'PD0001',
+          username: employee.username || 'John Doe',
+          dateOfJoining: '2025-11-01',
+          dateOfBirth: '2000-01-01',
+          gender: 'Male',
+          mobile: '8780149175',
+          permanentAddress: 'Ahmedabad, Ahmedabad',
+          temporaryAddress: 'Ahmedabad, Ahmedabad',
+          // Official Info
+          designation: 'Advisor - 1',
+          department: 'Engineering',
+          location: 'Ahmedabad',
+          state: 'GUJ',
+          dateOfConfirmation: 'N/A',
+          // Other Info
+          bankName: 'ICICI BANK',
+          ifscCode: 'ICICI000001',
+          accountNumber: '0000001504',
+          pfNumber: 'PF123456',
+          esiNumber: 'ESI789012',
+          panNumber: 'AAABC1234P',
+          aadharNumber: '123456780987',
+          uanNumber: 'UAN123456',
+          voterIdNumber: 'VOT123456'
+        };
+      }
 
       // General Tab
       this.setFieldValue('employeeCode', employee.employeeCode || 'N/A');
