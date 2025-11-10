@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave Status - Employee Management</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/modern-mobile.css">
+  <link rel="stylesheet" href="../css/modern-forms.css">
+  <link rel="stylesheet" href="../css/leave-status.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="page-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <button onclick="window.history.back()" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1 class="welcome-title">Leave Status</h1>
+    </header>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <div class="filter-row">
+        <select id="monthFilter" class="filter-select">
+          <option value="">Select Month</option>
+          <option value="1">January</option>
+          <option value="2">February</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+        
+        <select id="yearFilter" class="filter-select">
+          <option value="">Select Year</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Leave Status List -->
+    <div class="content-container">
+      <div id="leaveStatusList" class="leave-status-list">
+        <!-- Leave status items will be inserted here -->
+      </div>
+      
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="empty-illustration">
+          <i class="fas fa-calendar-times"></i>
+        </div>
+        <p class="empty-text">No Data</p>
+        <p class="empty-subtext">No leave applications found for the selected period</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav id="bottomNav" class="bottom-nav"></nav>
+
+  <script type="module" src="../js/pages/leave-status.js"></script>
+</body>
+</html>

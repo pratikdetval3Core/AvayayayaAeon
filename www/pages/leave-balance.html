@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave Balance - Employee Management</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/modern-mobile.css">
+  <link rel="stylesheet" href="../css/modern-forms.css">
+  <link rel="stylesheet" href="../css/leave-balance.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="page-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <button onclick="window.history.back()" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1 class="welcome-title">Leave Balance</h1>
+    </header>
+
+    <!-- Leave Balance Table -->
+    <div class="content-container">
+      <div class="balance-table-card">
+        <table class="balance-table">
+          <thead>
+            <tr>
+              <th>Leave Type</th>
+              <th>Total</th>
+              <th>Availed</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody id="leaveBalanceTable">
+            <!-- Leave balance rows will be inserted here -->
+          </tbody>
+        </table>
+        
+        <div class="empty-state" id="emptyState" style="display: none;">
+          <i class="fas fa-calendar-alt"></i>
+          <p>No leave balance data available</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav id="bottomNav" class="bottom-nav"></nav>
+
+  <script type="module" src="../js/pages/leave-balance.js"></script>
+</body>
+</html>

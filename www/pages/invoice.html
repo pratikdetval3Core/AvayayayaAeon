@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice Upload - Employee Management</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/modern-mobile.css">
+  <link rel="stylesheet" href="../css/modern-forms.css">
+  <link rel="stylesheet" href="../css/invoice.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="page-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <button onclick="window.history.back()" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1 class="welcome-title">Invoice Upload</h1>
+      <p class="welcome-subtitle">Upload invoices for payroll processing</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+      <!-- Upload Form Card -->
+      <div class="card upload-card">
+        <div class="card-header">
+          <h2>Upload New Invoice</h2>
+        </div>
+
+        <form id="invoiceUploadForm" class="upload-form">
+          <!-- File Upload -->
+          <div class="form-group">
+            <label for="invoiceFile" class="form-label">
+              <i class="fas fa-file-upload"></i>
+              Invoice File (PDF, JPEG, PNG)
+            </label>
+            <div class="file-input-wrapper">
+              <input 
+                type="file" 
+                id="invoiceFile" 
+                class="file-input" 
+                accept=".pdf,.jpg,.jpeg,.png"
+                required
+              >
+              <div class="file-input-display" id="fileInputDisplay">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>Choose file or drag here</span>
+                <small>Max size: 10MB</small>
+              </div>
+            </div>
+            <div class="file-preview" id="filePreview" style="display: none;">
+              <div class="preview-info">
+                <i class="fas fa-file-alt"></i>
+                <div class="preview-details">
+                  <span class="preview-name" id="previewName"></span>
+                  <span class="preview-size" id="previewSize"></span>
+                </div>
+              </div>
+              <button type="button" class="btn-remove" id="removeFileBtn">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label for="description" class="form-label">
+              <i class="fas fa-align-left"></i>
+              Description
+            </label>
+            <textarea 
+              id="description" 
+              class="form-textarea" 
+              rows="3"
+              placeholder="Enter invoice description..."
+              required
+            ></textarea>
+          </div>
+
+          <!-- Amount -->
+          <div class="form-group">
+            <label for="amount" class="form-label">
+              <i class="fas fa-dollar-sign"></i>
+              Amount
+            </label>
+            <input 
+              type="number" 
+              id="amount" 
+              class="form-input" 
+              placeholder="0.00"
+              step="0.01"
+              min="0"
+              required
+            >
+          </div>
+
+          <!-- Invoice Date -->
+          <div class="form-group">
+            <label for="invoiceDate" class="form-label">
+              <i class="fas fa-calendar"></i>
+              Invoice Date
+            </label>
+            <input 
+              type="date" 
+              id="invoiceDate" 
+              class="form-input"
+              required
+            >
+          </div>
+
+          <!-- Location Toggle -->
+          <div class="form-group">
+            <div class="toggle-wrapper">
+              <div class="toggle-label">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Capture Location</span>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="locationToggle">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="location-display" id="locationDisplay" style="display: none;">
+              <div class="location-info">
+                <i class="fas fa-location-arrow"></i>
+                <div class="location-coords">
+                  <span class="coord-label">Latitude:</span>
+                  <span class="coord-value" id="latValue">--</span>
+                  <span class="coord-label">Longitude:</span>
+                  <span class="coord-value" id="lonValue">--</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary btn-block" id="uploadBtn">
+            <i class="fas fa-upload"></i>
+            <span>Upload Invoice</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Uploaded Invoices List -->
+      <div class="card invoices-card">
+        <div class="card-header">
+          <h2>Your Invoices</h2>
+          <button class="btn btn-text" id="refreshInvoicesBtn">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+        </div>
+        <div class="invoices-list" id="invoicesList">
+          <!-- Invoice items will be dynamically inserted here -->
+          <div class="empty-state" id="emptyState">
+            <i class="fas fa-file-invoice"></i>
+            <p>No invoices uploaded yet</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav id="bottomNav" class="bottom-nav"></nav>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+    <div class="spinner"></div>
+    <p class="loading-text" id="loadingText">Uploading invoice...</p>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Invoice Details Modal -->
+  <div class="modal" id="invoiceModal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Invoice Details</h3>
+        <button class="btn-close" id="closeModalBtn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Invoice details will be inserted here -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-text" id="closeDetailsBtn">Close</button>
+        <button class="btn btn-danger" id="deleteInvoiceBtn">
+          <i class="fas fa-trash"></i>
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="../js/pages/invoice.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Details - Employee Management</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/modern-mobile.css">
+  <link rel="stylesheet" href="../css/modern-forms.css">
+  <link rel="stylesheet" href="../css/employee-details.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="page-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <button onclick="window.history.back()" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1 class="welcome-title">Employee Details</h1>
+    </header>
+
+    <!-- Tab Navigation -->
+    <div class="tabs-container">
+      <div class="tabs">
+        <button class="tab active" data-tab="general">General</button>
+        <button class="tab" data-tab="official">Official</button>
+        <button class="tab" data-tab="other">Other</button>
+      </div>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content-container">
+      <!-- General Tab -->
+      <div class="tab-content active" id="general-tab">
+        <div class="details-card">
+          <div class="detail-row">
+            <span class="detail-label">Employee Code:-</span>
+            <span class="detail-value" id="employeeCode"EP0001</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Employee Name:-</span>
+            <span class="detail-value" id="employeeName">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Date of Joining:-</span>
+            <span class="detail-value" id="dateOfJoining">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Date of Birth:-</span>
+            <span class="detail-value" id="dateOfBirth">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Gender:-</span>
+            <span class="detail-value" id="gender">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Email ID:-</span>
+            <span class="detail-value" id="email">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Mobile No.:-</span>
+            <span class="detail-value" id="mobile">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Permanent Address:-</span>
+            <span class="detail-value" id="permanentAddress">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Temporary Address:-</span>
+            <span class="detail-value" id="temporaryAddress">--</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Official Tab -->
+      <div class="tab-content" id="official-tab">
+        <div class="details-card">
+          <div class="detail-row">
+            <span class="detail-label">Designation:-</span>
+            <span class="detail-value" id="designation">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Department:-</span>
+            <span class="detail-value" id="department">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Location:-</span>
+            <span class="detail-value" id="location">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">State:-</span>
+            <span class="detail-value" id="state">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Date of Confirmation:-</span>
+            <span class="detail-value" id="dateOfConfirmation">--</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Tab -->
+      <div class="tab-content" id="other-tab">
+        <div class="details-card">
+          <div class="detail-row">
+            <span class="detail-label">Bank Name:-</span>
+            <span class="detail-value" id="bankName">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">IFSC Code:-</span>
+            <span class="detail-value" id="ifscCode">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Bank A/C No.:-</span>
+            <span class="detail-value" id="accountNumber">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">PF No.:-</span>
+            <span class="detail-value" id="pfNumber">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">ESI No.:-</span>
+            <span class="detail-value" id="esiNumber">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">PAN:-</span>
+            <span class="detail-value" id="panNumber">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Aadhar No.:-</span>
+            <span class="detail-value" id="aadharNumber">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">UANNO:-</span>
+            <span class="detail-value" id="uanNumber">--</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Voter Id No.:-</span>
+            <span class="detail-value" id="voterIdNumber">--</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav id="bottomNav" class="bottom-nav"></nav>
+
+  <script type="module" src="../js/pages/employee-details.js"></script>
+</body>
+</html>

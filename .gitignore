@@ -2,3 +2,7 @@
 .vscode
 
 *.md
+
+
+node_modules/
+payroll-app/

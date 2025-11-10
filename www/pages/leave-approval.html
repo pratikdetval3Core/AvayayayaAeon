@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave Approvals - Employee Payroll System</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/modern-mobile.css">
+  <link rel="stylesheet" href="../css/modern-forms.css">
+  <link rel="stylesheet" href="../css/leave.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="page-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <button onclick="window.history.back()" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1 class="welcome-title">Leave Approvals</h1>
+      <p class="welcome-subtitle">Review and approve leave requests</p>
+    </header>
+
+    <!-- Pending Leave Requests -->
+    <section class="approval-section">
+      <h2>Pending Leave Requests</h2>
+      <div class="approval-list" id="approvalList">
+        <!-- Pending leave requests will be inserted here -->
+      </div>
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <p>No pending leave requests</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Rejection Modal -->
+  <div class="modal" id="rejectionModal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Reject Leave Application</h3>
+        <button class="modal-close" id="modalClose">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="rejectionReason">Rejection Reason *</label>
+          <textarea id="rejectionReason" rows="4" placeholder="Please provide a reason for rejection" required></textarea>
+        </div>
+        <div class="form-error" id="modalError"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+        <button class="btn btn-danger" id="confirmRejectBtn">
+          <span class="btn-text">Reject</span>
+          <span class="btn-loader" style="display: none;"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav id="bottomNav" class="bottom-nav"></nav>
+
+  <script type="module" src="../js/pages/leave-approval.js"></script>
+</body>
+</html>

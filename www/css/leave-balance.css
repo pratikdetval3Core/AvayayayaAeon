@@ -1,0 +1,171 @@
+/**
+ * Leave Balance Page Styles
+ */
+
+.page-container {
+  min-height: 100vh;
+  padding-bottom: 80px;
+  background: var(--background);
+}
+
+/* ========================================
+   CONTENT CONTAINER
+   ======================================== */
+
+.content-container {
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+/* ========================================
+   BALANCE TABLE CARD
+   ======================================== */
+
+.balance-table-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-card);
+  overflow-x: auto;
+}
+
+/* ========================================
+   BALANCE TABLE
+   ======================================== */
+
+.balance-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.balance-table thead {
+  background: var(--background);
+}
+
+.balance-table th {
+  padding: var(--spacing-md);
+  text-align: left;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.balance-table th:first-child {
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.balance-table th:last-child {
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  text-align: center;
+}
+
+.balance-table th:nth-child(2),
+.balance-table th:nth-child(3) {
+  text-align: center;
+}
+
+.balance-table tbody tr {
+  border-bottom: 1px solid var(--background);
+  transition: background-color var(--transition-fast);
+}
+
+.balance-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.balance-table tbody tr:hover {
+  background-color: rgba(91, 127, 255, 0.02);
+}
+
+.balance-table td {
+  padding: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.balance-table td:first-child {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  text-transform: uppercase;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.5px;
+}
+
+.balance-table td:nth-child(2),
+.balance-table td:nth-child(3),
+.balance-table td:nth-child(4) {
+  text-align: center;
+  font-weight: var(--font-weight-semibold);
+}
+
+.balance-table td:nth-child(2) {
+  color: var(--primary-color);
+}
+
+.balance-table td:nth-child(3) {
+  color: var(--warning-color);
+}
+
+.balance-table td:nth-child(4) {
+  color: var(--success-color);
+  font-size: var(--font-size-base);
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  color: var(--text-tertiary);
+}
+
+.empty-state i {
+  font-size: 48px;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.3;
+  display: block;
+}
+
+.empty-state p {
+  font-size: var(--font-size-base);
+  margin: 0;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 767px) {
+  .content-container {
+    padding: var(--spacing-md);
+  }
+  
+  .balance-table-card {
+    padding: var(--spacing-md);
+  }
+  
+  .balance-table th,
+  .balance-table td {
+    padding: var(--spacing-sm);
+    font-size: var(--font-size-xs);
+  }
+  
+  .balance-table td:nth-child(4) {
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .balance-table-card {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}

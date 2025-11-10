@@ -1,0 +1,36 @@
+{
+  "name": "employee-payroll-app",
+  "version": "1.0.0",
+  "description": "Employee Payroll and Attendance Management System",
+  "main": "index.html",
+  "scripts": {
+    "prepare:www": "mkdir -p www && cp index.html www/ && cp -r pages www/ && cp -r css www/ && cp -r js www/",
+    "cap:init": "npx cap init",
+    "cap:add:android": "npm run prepare:www && npx cap add android",
+    "cap:copy": "npm run prepare:www && npx cap copy android",
+    "cap:sync": "npm run prepare:www && npx cap sync android",
+    "cap:open": "npx cap open android",
+    "build:apk": "npm run cap:sync && npm run cap:open",
+    "setup": "npm install && npm run cap:add:android",
+    "clean": "rm -rf www android ios"
+  },
+  "keywords": [
+    "payroll",
+    "attendance",
+    "employee",
+    "management"
+  ],
+  "author": "Company Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@capacitor/cli": "^5.5.0"
+  },
+  "dependencies": {
+    "@capacitor/android": "^5.5.0",
+    "@capacitor/core": "^5.5.0",
+    "@capacitor/camera": "^5.0.0",
+    "@capacitor/geolocation": "^5.0.0",
+    "@capacitor/splash-screen": "^5.0.0",
+    "@capacitor/status-bar": "^5.0.0"
+  }
+}

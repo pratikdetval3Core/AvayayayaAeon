@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance - Employee Management</title>
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/modern-mobile.css">
+  <link rel="stylesheet" href="../css/attendance-modern.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="page-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <button onclick="window.history.back()" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <h1 class="welcome-title">Attendance</h1>
+      <div class="welcome-subtitle" id="currentDateTime"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="page-content">
+      <!-- Current Status Card -->
+      <div class="card status-card">
+        <div class="status-indicator" id="statusIndicator">
+          <div class="status-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="status-text">
+            <h3 id="statusTitle">Not Marked</h3>
+            <p id="statusDescription">Mark in to start your day</p>
+          </div>
+        </div>
+
+        <!-- Mark In/Out Buttons -->
+        <div class="action-buttons">
+          <button class="btn btn-primary btn-large" id="markInBtn" disabled>
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Mark In</span>
+          </button>
+          <button class="btn btn-secondary btn-large" id="markOutBtn" disabled>
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Mark Out</span>
+          </button>
+        </div>
+
+        <!-- Today's Summary -->
+        <div class="today-summary" id="todaySummary">
+          <div class="summary-item">
+            <span class="summary-label">Mark In Time:</span>
+            <span class="summary-value" id="markInTime">--:--</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Mark Out Time:</span>
+            <span class="summary-value" id="markOutTime">--:--</span>
+          </div>
+          <div class="summary-item highlight">
+            <span class="summary-label">Hours Worked:</span>
+            <span class="summary-value" id="hoursWorked">0.00 hrs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Attendance History -->
+      <div class="card history-card">
+        <div class="card-header">
+          <h2>Attendance History</h2>
+          <button class="btn btn-text" id="refreshHistoryBtn">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+        </div>
+        <div class="history-list" id="historyList">
+          <!-- History items will be dynamically inserted here -->
+          <div class="empty-state" id="emptyState">
+            <i class="fas fa-calendar-alt"></i>
+            <p>No attendance records found</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Approval Section (for managers) -->
+      <div class="card approval-card" id="approvalSection" style="display: none;">
+        <div class="card-header">
+          <h2>Pending Approvals</h2>
+          <span class="badge" id="pendingCount">0</span>
+        </div>
+        <div class="approval-list" id="approvalList">
+          <!-- Approval items will be dynamically inserted here -->
+          <div class="empty-state" id="approvalEmptyState">
+            <i class="fas fa-check-circle"></i>
+            <p>No pending approvals</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" id="bottomNav"></nav>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Rejection Reason Modal -->
+  <div class="modal" id="rejectionModal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Reject Attendance</h3>
+        <button class="btn-close" id="closeModalBtn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Please provide a reason for rejection:</p>
+        <textarea 
+          id="rejectionReason" 
+          class="form-textarea" 
+          rows="4" 
+          placeholder="Enter rejection reason..."
+          required
+        ></textarea>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-text" id="cancelRejectBtn">Cancel</button>
+        <button class="btn btn-danger" id="confirmRejectBtn">Reject</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="../js/pages/attendance.js"></script>
+</body>
+</html>

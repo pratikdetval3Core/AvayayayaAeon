@@ -1,0 +1,26 @@
+{
+  "appId": "com.company.payroll",
+  "appName": "Employee Payroll",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https",
+    "allowNavigation": [
+      "*"
+    ]
+  },
+  "android": {
+    "allowMixedContent": true,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": true,
+    "backgroundColor": "#5B7FFF"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#5B7FFF",
+      "showSpinner": true,
+      "androidSpinnerStyle": "small",
+      "spinnerColor": "#FFFFFF"
+    }
+  }
+}

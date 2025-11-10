@@ -1,0 +1,232 @@
+/**
+ * Leave Status Page Styles
+ */
+
+.page-container {
+  min-height: 100vh;
+  padding-bottom: 80px;
+  background: var(--background);
+}
+
+/* ========================================
+   FILTER SECTION
+   ======================================== */
+
+.filter-section {
+  background: white;
+  padding: var(--spacing-lg) var(--spacing-md);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.filter-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.filter-select {
+  width: 100%;
+  padding: var(--spacing-md);
+  font-size: var(--font-size-base);
+  color: var(--text-primary);
+  background: var(--background);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  font-family: inherit;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 40px;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(91, 127, 255, 0.1);
+}
+
+/* ========================================
+   CONTENT CONTAINER
+   ======================================== */
+
+.content-container {
+  padding: var(--spacing-lg) var(--spacing-md);
+}
+
+/* ========================================
+   LEAVE STATUS LIST
+   ======================================== */
+
+.leave-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.leave-status-card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-base);
+  border-left: 4px solid var(--primary-color);
+}
+
+.leave-status-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.leave-status-card.pending {
+  border-left-color: var(--warning-color);
+}
+
+.leave-status-card.approved {
+  border-left-color: var(--success-color);
+}
+
+.leave-status-card.rejected {
+  border-left-color: var(--danger-color);
+}
+
+.leave-status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--background);
+}
+
+.leave-type {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.leave-status-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.leave-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-sm);
+}
+
+.leave-info-label {
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.leave-info-value {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.leave-reason {
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 2px solid var(--background);
+}
+
+.leave-reason-label {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.leave-reason-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  max-width: 400px;
+  margin: var(--spacing-2xl) auto;
+}
+
+.empty-illustration {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(91, 127, 255, 0.05) 0%, rgba(123, 159, 255, 0.05) 100%);
+  border-radius: 50%;
+}
+
+.empty-illustration i {
+  font-size: 80px;
+  color: rgba(91, 127, 255, 0.3);
+}
+
+.empty-text {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.empty-subtext {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 767px) {
+  .filter-section {
+    padding: var(--spacing-md);
+  }
+  
+  .content-container {
+    padding: var(--spacing-md);
+  }
+  
+  .leave-status-card {
+    padding: var(--spacing-md);
+  }
+  
+  .empty-illustration {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .empty-illustration i {
+    font-size: 60px;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}

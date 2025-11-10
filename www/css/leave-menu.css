@@ -1,0 +1,114 @@
+/**
+ * Leave Menu Page Styles
+ */
+
+.page-container {
+  min-height: 100vh;
+  padding-bottom: 80px;
+  background: var(--background);
+}
+
+/* ========================================
+   MENU CONTAINER
+   ======================================== */
+
+.menu-container {
+  padding: var(--spacing-lg) var(--spacing-md);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   MENU ITEMS
+   ======================================== */
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  transition: all var(--transition-base);
+  border-left: 4px solid var(--primary-color);
+}
+
+.menu-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateX(4px);
+}
+
+.menu-item:active {
+  transform: translateX(2px);
+}
+
+.menu-item-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  flex: 1;
+}
+
+.menu-item-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(91, 127, 255, 0.1) 0%, rgba(123, 159, 255, 0.1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.menu-item-text {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.menu-item-arrow {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-lg);
+  transition: transform var(--transition-fast);
+}
+
+.menu-item:hover .menu-item-arrow {
+  transform: translateX(4px);
+  color: var(--primary-color);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 767px) {
+  .menu-container {
+    padding: var(--spacing-md);
+  }
+  
+  .menu-item {
+    padding: var(--spacing-md);
+  }
+  
+  .menu-item-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  
+  .menu-item-text {
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}

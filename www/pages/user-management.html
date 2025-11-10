@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="User Management">
+    <meta name="theme-color" content="#2563eb">
+    <title>User Management - Employee Management</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/modern-mobile.css">
+    <link rel="stylesheet" href="../css/modern-forms.css">
+    <link rel="stylesheet" href="../css/user-management.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <button onclick="window.history.back()" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1 class="welcome-title">User Management</h1>
+            <p class="welcome-subtitle">Manage users and permissions</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="page-main">
+            <!-- Search and Filter Section -->
+            <section class="filter-section">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search users...">
+                </div>
+                <div class="filter-controls">
+                    <select id="roleFilter" class="filter-select">
+                        <option value="">All Roles</option>
+                        <option value="admin">Admin</option>
+                        <option value="manager">Manager</option>
+                        <option value="employee">Employee</option>
+                    </select>
+                    <select id="statusFilter" class="filter-select">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Users List Section -->
+            <section class="users-section">
+                <div class="section-header">
+                    <h2 class="section-title">Users</h2>
+                    <span class="user-count" id="userCount">0 users</span>
+                </div>
+                <div class="users-list" id="usersList">
+                    <!-- Users will be injected here -->
+                    <div class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Loading users...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- User Details Modal -->
+        <div class="modal" id="userDetailsModal">
+            <div class="modal-content modal-large">
+                <div class="modal-header">
+                    <h3 class="modal-title">User Details</h3>
+                    <button class="modal-close" id="closeModalBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- User Info -->
+                    <div class="user-info-section">
+                        <div class="user-avatar-large">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="user-info">
+                            <h3 class="user-name" id="modalUserName">-</h3>
+                            <p class="user-email" id="modalUserEmail">-</p>
+                            <div class="user-badges">
+                                <span class="badge" id="modalUserRole">-</span>
+                                <span class="badge" id="modalUserStatus">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Details -->
+                    <div class="details-section">
+                        <h4 class="subsection-title">Account Information</h4>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <span class="detail-label">User ID</span>
+                                <span class="detail-value" id="modalUserId">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">User Type</span>
+                                <span class="detail-value" id="modalUserType">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Created</span>
+                                <span class="detail-value" id="modalCreatedAt">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Last Login</span>
+                                <span class="detail-value" id="modalLastLogin">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role Management -->
+                    <div class="management-section">
+                        <h4 class="subsection-title">Role Management</h4>
+                        <div class="form-group">
+                            <label class="form-label" for="modalRoleSelect">Assign Role</label>
+                            <select id="modalRoleSelect" class="form-select">
+                                <option value="employee">Employee</option>
+                                <option value="manager">Manager</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" id="updateRoleBtn">
+                            <i class="fas fa-user-tag"></i>
+                            Update Role
+                        </button>
+                    </div>
+
+                    <!-- Permissions Management -->
+                    <div class="management-section">
+                        <h4 class="subsection-title">Permissions</h4>
+                        <div class="permissions-grid">
+                            <label class="permission-item">
+                                <input type="checkbox" class="permission-checkbox" value="canApproveAttendance">
+                                <span>Approve Attendance</span>
+                            </label>
+                            <label class="permission-item">
+                                <input type="checkbox" class="permission-checkbox" value="canApproveLeave">
+                                <span>Approve Leave</span>
+                            </label>
+                            <label class="permission-item">
+                                <input type="checkbox" class="permission-checkbox" value="canViewAllReports">
+                                <span>View All Reports</span>
+                            </label>
+                            <label class="permission-item">
+                                <input type="checkbox" class="permission-checkbox" value="canManageUsers">
+                                <span>Manage Users</span>
+                            </label>
+                            <label class="permission-item">
+                                <input type="checkbox" class="permission-checkbox" value="canProcessInvoices">
+                                <span>Process Invoices</span>
+                            </label>
+                            <label class="permission-item">
+                                <input type="checkbox" class="permission-checkbox" value="canViewAllKPIs">
+                                <span>View All KPIs</span>
+                            </label>
+                        </div>
+                        <button class="btn btn-primary" id="updatePermissionsBtn">
+                            <i class="fas fa-shield-alt"></i>
+                            Update Permissions
+                        </button>
+                    </div>
+
+                    <!-- Account Status -->
+                    <div class="management-section">
+                        <h4 class="subsection-title">Account Status</h4>
+                        <div class="status-toggle">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="userActiveToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-label">Account Active</span>
+                        </div>
+                        <button class="btn btn-danger" id="toggleStatusBtn">
+                            <i class="fas fa-user-slash"></i>
+                            <span id="toggleStatusText">Deactivate User</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav id="bottomNav" class="bottom-nav">
+            <!-- Navigation will be injected by JavaScript -->
+        </nav>
+    </div>
+
+    <script type="module" src="../js/pages/user-management.js"></script>
+</body>
+</html>
